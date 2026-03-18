@@ -4,13 +4,14 @@ import SectionHeader from '../components/SectionHeader'
 import ProjectCard from '../components/ProjectCard'
 import ProjectModal from '../components/ProjectModal'
 import { api, type ProjectResponse } from '../lib/api'
+import type { Project } from '../components/ProjectCard'
 
 const categories = ['All', 'Live', 'WIP', 'Archived']
 
 export default function Projects() {
   const [allProjects, setAllProjects] = useState<ProjectResponse[]>([])
   const [filter, setFilter] = useState('All')
-  const [selected, setSelected] = useState<ProjectResponse | null>(null)
+  const [selected, setSelected] = useState<Project | null>(null)
 
   useEffect(() => {
     api.projects.list().then(setAllProjects)
