@@ -102,25 +102,6 @@ export default function About() {
                   }}
                 />
               </div>
-
-              <div className="mt-6 p-5 rounded-xl border border-mist bg-snow space-y-3">
-                {about?.status_text && (
-                  <div className="flex items-center gap-2">
-                    <div className="w-2 h-2 rounded-full bg-teal animate-pulse" />
-                    <span className="font-mono text-xs text-teal">{about.status_text}</span>
-                  </div>
-                )}
-                {about?.info_fields && (
-                  <div className="space-y-2">
-                    {about.info_fields.map(({ label, value }) => (
-                      <div key={label} className="flex justify-between font-mono text-xs">
-                        <span className="text-steel">{label}</span>
-                        <span className="text-ink">{value}</span>
-                      </div>
-                    ))}
-                  </div>
-                )}
-              </div>
             </motion.div>
           </div>
         </div>

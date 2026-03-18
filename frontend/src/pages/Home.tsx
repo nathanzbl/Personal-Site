@@ -147,7 +147,7 @@ export default function Home() {
             title="Skills"
             subtitle="Languages, frameworks, and tools I work with."
           />
-          <div className="space-y-6">
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
             {skills.map((skill, i) => (
               <SkillBar key={skill.id} {...skill} index={i} />
             ))}

@@ -7,35 +7,19 @@ interface SkillBarProps {
   index: number
 }
 
-export default function SkillBar({ name, level, category, index }: SkillBarProps) {
+export default function SkillBar({ name, category, index }: SkillBarProps) {
   return (
     <motion.div
-      initial={{ opacity: 0, x: -20 }}
-      whileInView={{ opacity: 1, x: 0 }}
+      initial={{ opacity: 0, y: 16 }}
+      whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.4, delay: index * 0.05 }}
-      className="group"
+      transition={{ duration: 0.35, delay: index * 0.04 }}
+      className="px-4 py-3 rounded-xl border border-mist bg-snow hover:border-blue/30 hover:bg-white transition-all"
     >
-      <div className="flex items-center justify-between mb-3">
-        <div className="flex items-center gap-4">
-          <span className="font-mono text-[10px] text-steel uppercase tracking-wider w-16">
-            {category}
-          </span>
-          <span className="text-sm text-ink font-medium group-hover:text-blue transition-colors">
-            {name}
-          </span>
-        </div>
-        <span className="font-mono text-xs text-steel">{level}%</span>
-      </div>
-      <div className="h-2 bg-cloud rounded-full overflow-hidden">
-        <motion.div
-          initial={{ width: 0 }}
-          whileInView={{ width: `${level}%` }}
-          viewport={{ once: true }}
-          transition={{ duration: 1, delay: index * 0.05 + 0.3, ease: 'easeOut' }}
-          className="h-full rounded-full bg-gradient-to-r from-blue-dim to-blue-light"
-        />
-      </div>
+      <span className="block font-mono text-[10px] text-steel uppercase tracking-wider mb-1">
+        {category}
+      </span>
+      <span className="text-sm text-ink font-medium">{name}</span>
     </motion.div>
   )
 }

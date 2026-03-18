@@ -12,7 +12,15 @@ export interface Project {
   link?: string
 }
 
-export default function ProjectCard({ project, index }: { project: Project; index: number }) {
+export default function ProjectCard({
+  project,
+  index,
+  onSelect,
+}: {
+  project: Project
+  index: number
+  onSelect: (project: Project) => void
+}) {
   const statusColors = {
     live: 'bg-teal',
     wip: 'bg-blue',
@@ -25,7 +33,8 @@ export default function ProjectCard({ project, index }: { project: Project; inde
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-50px' }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
-      className="group relative"
+      className="group relative cursor-pointer"
+      onClick={() => onSelect(project)}
     >
       <div className="relative overflow-hidden rounded-xl border border-mist bg-white hover:border-blue/30 transition-all duration-500 hover:shadow-lg hover:shadow-blue/5">
         {/* Colored accent bar */}
@@ -75,6 +84,7 @@ export default function ProjectCard({ project, index }: { project: Project; inde
               href={project.link}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={(e) => e.stopPropagation()}
               className="inline-flex items-center gap-2 mt-6 font-mono text-xs text-blue hover:text-blue-dim transition-colors"
             >
               View Live

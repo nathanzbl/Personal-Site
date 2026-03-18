@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { motion } from 'motion/react'
 import SectionHeader from '../components/SectionHeader'
 import ProjectCard from '../components/ProjectCard'
+import ProjectModal from '../components/ProjectModal'
 import { api, type ProjectResponse } from '../lib/api'
 
 const categories = ['All', 'Live', 'WIP', 'Archived']
@@ -9,6 +10,7 @@ const categories = ['All', 'Live', 'WIP', 'Archived']
 export default function Projects() {
   const [allProjects, setAllProjects] = useState<ProjectResponse[]>([])
   const [filter, setFilter] = useState('All')
+  const [selected, setSelected] = useState<ProjectResponse | null>(null)
 
   useEffect(() => {
     api.projects.list().then(setAllProjects)
@@ -56,7 +58,7 @@ export default function Projects() {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-7">
           {filtered.map((project, i) => (
-            <ProjectCard key={project.id} project={project} index={i} />
+            <ProjectCard key={project.id} project={project} index={i} onSelect={setSelected} />
           ))}
         </div>
 
@@ -66,6 +68,8 @@ export default function Projects() {
           </div>
         )}
       </div>
+
+      <ProjectModal project={selected} onClose={() => setSelected(null)} />
     </section>
   )
 }
